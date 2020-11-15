@@ -145,11 +145,14 @@ export default () => {
             date: value
         })
         if (value === "") {
-
+            setError({
+                ...error,
+                date: true
+            })
         } else {
             setError({
                 ...error,
-                money: false
+                date: false
             })
         }
     }
@@ -159,6 +162,7 @@ export default () => {
     };
 
     const SignupClick = () => {
+        console.log("zmfflr")
         if (!error.Email && !error.password && !error.companyName && userValue.money !== "" && userValue.date !== "" && userValue.Email !== "" && userValue.password !== "" && userValue.companyName !== "") {
             alert("회원가입 되었습니다. \n 가입형태: " + radioValue + "\n 이메일 :" + userValue.Email + "\n 회사이름: " + userValue.companyName + "\n 화폐단위: " + userValue.money + "\n 회사설립일: " + userValue.date);
         } else if (error.Email || userValue.Email === "") {
@@ -179,13 +183,13 @@ export default () => {
                 ...error,
                 companyName: true
             })
-        } else if (error.money) {
+        } else if (error.money || userValue.money === "") {
             alert("화폐단위를 설정해주세요.");
             setError({
                 ...error,
                 money: true
             })
-        } else if (error.date) {
+        } else if (error.date || userValue.date === "") {
             alert("회사 설립일을 입력해주세요.")
             setError({
                 ...error,
